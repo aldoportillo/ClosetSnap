@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Itemcategory resource:
+
+  # CREATE
+  post("/insert_itemcategory", { :controller => "itemcategories", :action => "create" })
+          
+  # READ
+  get("/itemcategories", { :controller => "itemcategories", :action => "index" })
+  
+  get("/itemcategories/:path_id", { :controller => "itemcategories", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_itemcategory/:path_id", { :controller => "itemcategories", :action => "update" })
+  
+  # DELETE
+  get("/delete_itemcategory/:path_id", { :controller => "itemcategories", :action => "destroy" })
+
+  #------------------------------
+
   resources :outfits
   resources :categories
   resources :items
