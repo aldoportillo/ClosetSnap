@@ -23,6 +23,13 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
+    if params[:item][:image].present?
+
+      uploaded_image = Cloudinary::Uploader.upload(params[:item][:image].path)
+      
+      @item.image_url = uploaded_image['secure_url']
+    end
+
     respond_to do |format|
       if @item.save
         format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
@@ -65,6 +72,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :image_url, :size, :compliments, :user_id)
+      params.require(:item).permit(:name, :size, :compliments, :user_id)
     end
 end
