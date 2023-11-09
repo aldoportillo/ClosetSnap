@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  # Routes for the Itemoutfit resource:
+
+  # CREATE
+  post("/insert_itemoutfit", { :controller => "itemoutfits", :action => "create" })
+          
+  # READ
+  get("/itemoutfits", { :controller => "itemoutfits", :action => "index" })
+  
+  get("/itemoutfits/:path_id", { :controller => "itemoutfits", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_itemoutfit/:path_id", { :controller => "itemoutfits", :action => "update" })
+  
+  # DELETE
+  get("/delete_itemoutfit/:path_id", { :controller => "itemoutfits", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Itemcategory resource:
 
   # CREATE
