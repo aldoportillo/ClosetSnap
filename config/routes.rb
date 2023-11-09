@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # Routes for the Itemoutfit resource:
+  root to: "outfits#index"
 
   # CREATE
   post("/insert_itemoutfit", { :controller => "itemoutfits", :action => "create" })
