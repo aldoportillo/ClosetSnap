@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Itemcategory #<%= @the_itemcategory.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/itemcategories">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_itemcategory/<%= @the_itemcategory.id %>">
+          Delete itemcategory
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_itemcategory.category_id %>
+      </dd>
+
+      <dt>
+        Item
+      </dt>
+      <dd>
+        <%= @the_itemcategory.item_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_itemcategory.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_itemcategory.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit itemcategory
+    </h2>
+
+    <form action="/modify_itemcategory/<%= @the_itemcategory.id %>"  method="post" >
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id" value="<%= @the_itemcategory.category_id %>">
+      </div>
+
+      <div>
+        <label for="item_id_box">
+          Item
+        </label>
+
+        <input type="text" id="item_id_box" name="query_item_id" value="<%= @the_itemcategory.item_id %>">
+      </div>
+
+      <button>
+        Update itemcategory
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
