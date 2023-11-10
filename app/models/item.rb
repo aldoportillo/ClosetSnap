@@ -12,7 +12,6 @@
 #  user_id     :integer
 #
 class Item < ApplicationRecord
-  mount_uploader :image_url, ImageUploader
 
   belongs_to :user, required: true, class_name: "User", foreign_key: "user_id"
   has_many  :itemoutfits, class_name: "Itemoutfit", foreign_key: "item_id", dependent: :destroy
