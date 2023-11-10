@@ -15,7 +15,13 @@
       <% @outfits.each do |outfit| %>
         <tr>
           <td><img src="<%= outfit.image_url %>" alt="Image" class="img-fluid"></td>
-          <td>map</td>
+          <td>
+            <% outfit.items.map do |item|%>
+              <%= link_to item_path(item) do %>
+              <p><%= item.name %></p>
+              <% end %>
+            <% end %>
+          </td>
           <td><%= outfit.compliments%></td>
         </tr>
 
