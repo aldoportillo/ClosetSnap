@@ -23,6 +23,14 @@ class OutfitsController < ApplicationController
   def create
     @outfit = Outfit.new(outfit_params)
 
+    if params[:outfit][:image].present?
+
+      uploaded_image = Cloudinary::Uploader.upload(params[:outfit][:image].path)
+      
+      @outfit.image_url = uploaded_image['secure_url']
+    end
+
+
     respond_to do |format|
       if @outfit.save
         format.html { redirect_to outfit_url(@outfit), notice: "Outfit was successfully created." }
@@ -65,6 +73,6 @@ class OutfitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def outfit_params
-      params.require(:outfit).permit(:image_url, :compliments, :user_id)
+      params.require(:outfit).permit(:compliments, :user_id)
     end
 end
