@@ -6,11 +6,28 @@
 
 <div>
 
-  <% @outfit.items.map do |item| %>
-    <%= item.name %>,
-  <% end %>
 
-  <%= render "shared/add_item_to_outfit_form" %>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @outfit.items.map do |item| %>
+        <tr>
+          <th scope="row"><%= item.name %></th>
+
+          <td><%= button_to "Remove Item", item, method: :delete %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <%= render "shared/add_item_to_outfit_form" %> 
+      </tr>
+    </tbody>
+  </table>
+
   <%= link_to "Edit this outfit", edit_outfit_path(@outfit) %> |
   <%= link_to "Back to outfits", outfits_path %>
 

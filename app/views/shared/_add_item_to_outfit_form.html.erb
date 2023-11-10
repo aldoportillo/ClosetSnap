@@ -1,9 +1,12 @@
 <%= form_with url: insert_itemoutfit_path, method: :post do |form| %>
-  <%= form.label :item_id, 'Select an Item to Add' %>
+  <%# <%= form.label :item_id, 'Select an Item to Add' %>
+  <td scope="row">
   <%= form.collection_select :item_id, Item.where(:user_id => current_user.id), :id, :name, include_blank: false %>
+  </td>
   <div>
     <%= form.number_field :outfit_id, value: @outfit.id, hidden: true %>
   </div>
-
+  <td>
   <%= form.submit 'Add Item' %>
+  </td>
   <% end %>
