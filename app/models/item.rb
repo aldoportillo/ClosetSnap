@@ -15,7 +15,7 @@ class Item < ApplicationRecord
 
   belongs_to :user, required: true, class_name: "User", foreign_key: "user_id"
 
-  has_many  :itemoutfits, class_name: "Itemoutfit", foreign_key: "item_id", dependent: :destroy
+  has_many :itemoutfits, dependent: :destroy
   has_many :outfits, through: :itemoutfits
 
   has_many  :itemcategories, class_name: "Itemcategory", foreign_key: "item_id", dependent: :destroy

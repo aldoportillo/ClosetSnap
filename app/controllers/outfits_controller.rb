@@ -24,12 +24,9 @@ class OutfitsController < ApplicationController
     @outfit = Outfit.new(outfit_params)
 
     if params[:outfit][:image].present?
-
       uploaded_image = Cloudinary::Uploader.upload(params[:outfit][:image].path, folder: "closetsnap/outfits")
-      
       @outfit.image_url = uploaded_image['secure_url']
     end
-
 
     respond_to do |format|
       if @outfit.save
@@ -44,6 +41,11 @@ class OutfitsController < ApplicationController
 
   # PATCH/PUT /outfits/1 or /outfits/1.json
   def update
+
+    if params[:outfit][:image].present?
+      uploaded_image = Cloudinary::Uploader.upload(params[:outfit][:image].path, folder: "closetsnap/outfits")
+      @outfit.image_url = uploaded_image['secure_url']
+    end
     respond_to do |format|
       if @outfit.update(outfit_params)
         format.html { redirect_to outfit_url(@outfit), notice: "Outfit was successfully updated." }
@@ -73,6 +75,6 @@ class OutfitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def outfit_params
-      params.require(:outfit).permit(:compliments, :user_id)
+      params.require(:outfit).permit(:compliments, :user_id, item_ids: [])
     end
 end
