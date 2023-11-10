@@ -3,7 +3,7 @@ class OutfitsController < ApplicationController
 
   # GET /outfits or /outfits.json
   def index
-    @outfits = Outfit.all
+    @outfits = Outfit.where(:user_id => current_user.id)
   end
 
   # GET /outfits/1 or /outfits/1.json
