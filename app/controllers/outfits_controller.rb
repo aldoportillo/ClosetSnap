@@ -25,7 +25,7 @@ class OutfitsController < ApplicationController
 
     if params[:outfit][:image].present?
 
-      uploaded_image = Cloudinary::Uploader.upload(params[:outfit][:image].path)
+      uploaded_image = Cloudinary::Uploader.upload(params[:outfit][:image].path, folder: "closetsnap/outfits")
       
       @outfit.image_url = uploaded_image['secure_url']
     end
