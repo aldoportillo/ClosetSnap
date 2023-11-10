@@ -3,6 +3,13 @@
 <%= render @item %>
 
 <div>
+
+  <% @item.categories.map do |category| %>
+    <%= category.name %>,
+  <% end %>
+
+  <%= render "shared/add_category_to_item_form" %>
+
   <%= link_to "Edit this item", edit_item_path(@item) %> |
   <%= link_to "Back to items", items_path %>
 

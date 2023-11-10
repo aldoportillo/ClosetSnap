@@ -19,12 +19,12 @@ class ItemcategoriesController < ApplicationController
 
   def create
     the_itemcategory = Itemcategory.new
-    the_itemcategory.category_id = params.fetch("query_category_id")
-    the_itemcategory.item_id = params.fetch("query_item_id")
+    the_itemcategory.category_id = params.fetch("category_id")
+    the_itemcategory.item_id = params.fetch("item_id")
 
     if the_itemcategory.valid?
       the_itemcategory.save
-      redirect_to("/itemcategories", { :notice => "Itemcategory created successfully." })
+      redirect_to("/item/#{the_itemcategory.item_id}", { :notice => "Itemcategory created successfully." })
     else
       redirect_to("/itemcategories", { :alert => the_itemcategory.errors.full_messages.to_sentence })
     end
@@ -39,7 +39,7 @@ class ItemcategoriesController < ApplicationController
 
     if the_itemcategory.valid?
       the_itemcategory.save
-      redirect_to("/itemcategories/#{the_itemcategory.id}", { :notice => "Itemcategory updated successfully."} )
+      redirect_to("/item/#{the_itemcategory.item_id}", { :notice => "Itemcategory updated successfully."} )
     else
       redirect_to("/itemcategories/#{the_itemcategory.id}", { :alert => the_itemcategory.errors.full_messages.to_sentence })
     end
