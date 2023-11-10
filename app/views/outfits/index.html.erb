@@ -2,13 +2,27 @@
 
 <h1>Outfits</h1>
 
-<div id="outfits">
-  <% @outfits.each do |outfit| %>
-    <%= render outfit %>
-    <p>
-      <%= link_to "Show this outfit", outfit %>
-    </p>
-  <% end %>
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Items</th>
+        <th scope="col">Likes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @outfits.each do |outfit| %>
+        <tr>
+          <td><img src="<%= outfit.image_url %>" alt="Image" class="img-fluid"></td>
+          <td>map</td>
+          <td><%= outfit.compliments%></td>
+        </tr>
+
+        <%# <%= link_to "Show this item", item %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New outfit", new_outfit_path %>
