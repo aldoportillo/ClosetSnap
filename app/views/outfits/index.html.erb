@@ -12,9 +12,15 @@
       </tr>
     </thead>
     <tbody>
+      
       <% @outfits.each do |outfit| %>
+      
         <tr>
-          <td><img src="<%= outfit.image_url %>" alt="Image" class="img-fluid"></td>
+          <td>
+            <%= link_to outfit_path(outfit) do %>
+              <img src="<%= outfit.image_url %>" alt="Image" class="img-fluid">
+            <% end %>
+          </td>
           <td>
             <% outfit.items.map do |item|%>
               <%= link_to item_path(item) do %>
@@ -24,8 +30,6 @@
           </td>
           <td><%= outfit.compliments%></td>
         </tr>
-
-        <%# <%= link_to "Show this item", item %>
       <% end %>
     </tbody>
   </table>
