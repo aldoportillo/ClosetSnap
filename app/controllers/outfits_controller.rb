@@ -3,7 +3,7 @@ class OutfitsController < ApplicationController
 
   # GET /outfits or /outfits.json
   def index
-    @outfits = Outfit.all
+    @outfits = Outfit.where(:user_id => current_user.id)
   end
 
   # GET /outfits/1 or /outfits/1.json
@@ -22,6 +22,14 @@ class OutfitsController < ApplicationController
   # POST /outfits or /outfits.json
   def create
     @outfit = Outfit.new(outfit_params)
+
+    if params[:outfit][:image].present?
+
+      uploaded_image = Cloudinary::Uploader.upload(params[:outfit][:image].path, folder: "closetsnap/outfits")
+      
+      @outfit.image_url = uploaded_image['secure_url']
+    end
+
 
     respond_to do |format|
       if @outfit.save
@@ -65,6 +73,6 @@ class OutfitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def outfit_params
-      params.require(:outfit).permit(:image_url, :compliments, :user_id)
+      params.require(:outfit).permit(:compliments, :user_id)
     end
 end

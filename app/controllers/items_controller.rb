@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.all
+    @items = Item.where(:user_id => current_user.id)
   end
 
   # GET /items/1 or /items/1.json
@@ -22,6 +22,13 @@ class ItemsController < ApplicationController
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)
+
+    if params[:item][:image].present?
+
+      uploaded_image = Cloudinary::Uploader.upload(params[:item][:image].path, folder: "closetsnap/items")
+      
+      @item.image_url = uploaded_image['secure_url']
+    end
 
     respond_to do |format|
       if @item.save
@@ -65,6 +72,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :image_url, :size, :compliments, :user_id)
+      params.require(:item).permit(:name, :size, :compliments, :user_id)
     end
 end
