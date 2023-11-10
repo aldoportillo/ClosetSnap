@@ -11,31 +11,34 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group">
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control"%>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :image %>
+    <%= form.file_field :image, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="row">
+  <div class="form-group col">
     <%= form.label :size, style: "display: block" %>
-    <%= form.text_field :size %>
+    <%= form.text_field :size, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group col">
     <%= form.label :compliments, style: "display: block" %>
-    <%= form.number_field :compliments %>
+    <%= form.number_field :compliments, class: "form-control" %>
+  </div>
   </div>
 
   <div>
     <%= form.number_field :user_id, value: current_user.id, hidden: true %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="btn btn-primary">
+    <%= form.submit "Add Item", class: "btn btn-primary" %>
   </div>
 <% end %>
