@@ -30,6 +30,13 @@ class OutfitsController < ApplicationController
 
     respond_to do |format|
       if @outfit.save
+
+        @outfit.item_ids.map do |item_id|
+          Itemoutfit.create(
+            item_id: item_id,
+            outfit_id: @outfit.id
+          )
+        end
         format.html { redirect_to outfit_url(@outfit), notice: "Outfit was successfully created." }
         format.json { render :show, status: :created, location: @outfit }
       else

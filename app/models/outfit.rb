@@ -16,10 +16,4 @@ class Outfit < ApplicationRecord
   has_many :itemoutfits, dependent: :destroy
   has_many :items, through: :itemoutfits
 
-
-  private
-
-  def must_have_at_least_one_item
-    errors.add(:items, "must have at least one item") if items.empty?
-  end
 end

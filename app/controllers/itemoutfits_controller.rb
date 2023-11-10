@@ -19,12 +19,12 @@ class ItemoutfitsController < ApplicationController
 
   def create
     the_itemoutfit = Itemoutfit.new
-    the_itemoutfit.item_id = params.fetch("query_item_id")
-    the_itemoutfit.outfit_id = params.fetch("query_outfit_id")
+    the_itemoutfit.item_id = params.fetch("item_id")
+    the_itemoutfit.outfit_id = params.fetch("outfit_id")
 
     if the_itemoutfit.valid?
       the_itemoutfit.save
-      redirect_to("/itemoutfits", { :notice => "Itemoutfit created successfully." })
+      redirect_to("/outfits/#{the_itemoutfit.outfit_id}", { :notice => "Itemoutfit created successfully." })
     else
       redirect_to("/itemoutfits", { :alert => the_itemoutfit.errors.full_messages.to_sentence })
     end

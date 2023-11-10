@@ -2,7 +2,15 @@
 
 <%= render @outfit %>
 
+
+
 <div>
+
+  <% @outfit.items.map do |item| %>
+    <%= item.name %>,
+  <% end %>
+
+  <%= render "shared/add_item_to_outfit_form" %>
   <%= link_to "Edit this outfit", edit_outfit_path(@outfit) %> |
   <%= link_to "Back to outfits", outfits_path %>
 
