@@ -1,9 +1,9 @@
 <%= form_with url: insert_itemcategory_path, method: :post do |form| %>
-  <%= form.label :category_id, 'Select an Item to Add' %>
-  <%= form.collection_select :category_id, Category.all, :id, :name, include_blank: false %>
-  <div>
-    <%= form.number_field :item_id, value: @item.id, hidden: true %>
-  </div>
-
-  <%= form.submit 'Add Category' %>
-  <% end %>
+  <td>
+    <%= form.collection_select :category_id, Category.all, :id, :name, include_blank: false %>
+  </td>
+  <%= form.number_field :item_id, value: @item.id, hidden: true %>
+  <td>
+    <%= form.submit 'Add Category' %>
+  </td>
+<% end %>
