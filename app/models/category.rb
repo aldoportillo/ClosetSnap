@@ -10,5 +10,6 @@
 class Category < ApplicationRecord
 
   has_many  :itemcategories, class_name: "Itemcategory", foreign_key: "category_id", dependent: :destroy
+  has_many :categories, through: :itemcategories
   
 end

@@ -2,18 +2,24 @@
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
+
+    <div class="form-group">
+    <%= f.label :email, style: "display: block" %>
+    <%= f.email_field :email,
+                required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
+                class: "form-control"%>
+
+  <div class="form-group">
+    <%= f.label :password, style: "display: block" %>
+    <%= f.password_field :password,
                 required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                 class: "form-control" %>
+                 <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%= f.button :submit, "Log in", class: "btn btn-primary" %>
   </div>
 <% end %>
 

@@ -3,7 +3,27 @@
 <%= render @item %>
 
 <div>
-  <%= link_to "Edit this item", edit_item_path(@item) %> |
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @item.categories.map do |category| %>
+        <tr>
+          <th scope="row"><%= category.name %></th>
+
+          <td><%= button_to "Remove Category", category, method: :delete %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <%= render "shared/add_category_to_item_form" %> 
+      </tr>
+    </tbody>
+  </table>
   <%= link_to "Back to items", items_path %>
 
   <%= button_to "Destroy this item", @item, method: :delete %>
