@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.where(:user_id => current_user.id)
+    #@items = Item.where(:user_id => current_user.id)
+
+    @q = Item.where(:user_id => current_user.id).ransack(params[:q])
+
+    @items = @q.result
   end
 
   # GET /items/1 or /items/1.json
