@@ -74,6 +74,16 @@ class OutfitsController < ApplicationController
     end
   end
 
+  # Remove item 
+
+  def remove_item
+    outfit = Outfit.find(params[:id])
+    item = Item.find(params[:item_id])
+    outfit_item = outfit.itemoutfits.find_by(item_id: item.id)
+    outfit_item.destroy if outfit_item
+    redirect_to outfit_path(outfit), notice: "Item removed successfully."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_outfit
