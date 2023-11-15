@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_155550) do
 
   create_table "outfits", force: :cascade do |t|
     t.string "image_url"
-    t.string "compliments"
+    t.integer "compliments"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

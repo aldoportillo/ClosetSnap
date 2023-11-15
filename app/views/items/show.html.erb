@@ -24,6 +24,12 @@
       </tr>
     </tbody>
   </table>
+  <%= form_with url: increment_compliments_item_path(@item), method: :patch do %>
+    <%= submit_tag 'Increment Compliments' %>
+  <% end %>
+  <%= form_with url: decrement_compliments_item_path(@item), method: :patch do %>
+    <%= submit_tag 'Decrement Compliments' %>
+  <% end %>
   <%= link_to "Back to items", items_path %>
 
   <%= button_to "Destroy this item", @item, method: :delete %>

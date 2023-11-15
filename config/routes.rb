@@ -41,12 +41,16 @@ Rails.application.routes.draw do
 
   resources :outfits do
     member do
+      patch :increment_compliments
+      patch :decrement_compliments
       delete :remove_item
     end
   end
  
   resources :items do
     member do
+      patch :increment_compliments
+      patch :decrement_compliments
       delete :remove_category
     end
   end

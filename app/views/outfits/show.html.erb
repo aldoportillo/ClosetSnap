@@ -21,12 +21,20 @@
 
           <td><%= button_to "Remove Item", remove_item_outfit_path(@outfit, item_id: item.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
+        
       <% end %>
+      
       <tr>
         <%= render "shared/add_item_to_outfit_form" %> 
       </tr>
     </tbody>
   </table>
+  <%= form_with url: increment_compliments_outfit_path(@outfit), method: :patch do %>
+    <%= submit_tag 'Increment Compliments' %>
+  <% end %>
+  <%= form_with url: decrement_compliments_outfit_path(@outfit), method: :patch do %>
+    <%= submit_tag 'Decrement Compliments' %>
+  <% end %>
 
   <%= link_to "Edit this outfit", edit_outfit_path(@outfit) %> |
   <%= link_to "Back to outfits", outfits_path %>
