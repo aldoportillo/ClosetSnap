@@ -49,6 +49,8 @@ Rails.application.routes.draw do
  
   resources :items do
     member do
+      patch :increment_compliments
+      patch :decrement_compliments
       delete :remove_category
     end
   end

@@ -78,6 +78,18 @@ class ItemsController < ApplicationController
     redirect_to item_path(item), notice: "Category removed successfully."
   end
 
+  def increment_compliments
+    item = Item.find(params[:id])
+    item.increment!(:compliments)
+    redirect_to item_path(item), notice: "Compliments incremented!"
+  end
+  
+  def decrement_compliments
+    item = Item.find(params[:id])
+    item.decrement!(:compliments)
+    redirect_to item_path(item), notice: "Compliments decremented!"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
