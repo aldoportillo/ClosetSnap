@@ -74,6 +74,8 @@ class OutfitsController < ApplicationController
     end
   end
 
+  ## Member actions
+
   # Remove item 
 
   def remove_item
@@ -82,6 +84,18 @@ class OutfitsController < ApplicationController
     outfit_item = outfit.itemoutfits.find_by(item_id: item.id)
     outfit_item.destroy if outfit_item
     redirect_to outfit_path(outfit), notice: "Item removed successfully."
+  end
+
+  def increment_compliments
+    outfit = Outfit.find(params[:id])
+    outfit.increment!(:compliments)
+    redirect_to outfit_path(outfit), notice: "Compliments incremented!"
+  end
+  
+  def decrement_compliments
+    outfit = Outfit.find(params[:id])
+    outfit.decrement!(:compliments)
+    redirect_to outfit_path(outfit), notice: "Compliments decremented!"
   end
 
   private
