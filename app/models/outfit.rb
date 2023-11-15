@@ -3,7 +3,7 @@
 # Table name: outfits
 #
 #  id          :integer          not null, primary key
-#  compliments :string
+#  compliments :integer
 #  image_url   :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
