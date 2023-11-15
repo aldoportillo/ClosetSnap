@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   before_action :set_search
 
   def set_search
-    @q = Item.where(:user_id => current_user.id).ransack(params[:q])
+    if (current_user)
+      @q = Item.where(:user_id => current_user.id).ransack(params[:q])
+    end
   end
 
   protected

@@ -32,9 +32,11 @@
           </ul>
         </li>
       </ul>
-      <%= search_form_for @q, class:"d-flex" do |f| %>
-        <%= f.text_field :name_cont ,class: "form-control me-2", placeholder: "Search" %>
-        <%= f.submit :class => "btn btn-outline-success" %>
+      <% if current_user %>
+        <%= search_form_for @q, class:"d-flex" do |f| %>
+          <%= f.text_field :name_cont ,class: "form-control me-2", placeholder: "Search" %>
+          <%= f.submit :class => "btn btn-outline-success" %>
+        <% end %>
       <% end %>
     </div>
   </div>
