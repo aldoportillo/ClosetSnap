@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.where(:user_id => current_user.id)
+    #@items = Item.where(:user_id => current_user.id)
+
+    @q = Item.where(:user_id => current_user.id).ransack(params[:q])
+
+    @items = @q.result
   end
 
   # GET /items/1 or /items/1.json
@@ -62,6 +66,16 @@ class ItemsController < ApplicationController
       format.html { redirect_to items_url, notice: "Item was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  #Remove Category
+
+  def remove_category
+    item = Item.find(params[:id])
+    category = Category.find(params[:category_id])
+    item_category = item.itemcategories.find_by(category_id: category.id)
+    item_category.destroy if item_category
+    redirect_to item_path(item), notice: "Category removed successfully."
   end
 
   private

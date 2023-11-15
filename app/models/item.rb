@@ -21,6 +21,8 @@ class Item < ApplicationRecord
   has_many  :itemcategories, class_name: "Itemcategory", foreign_key: "item_id", dependent: :destroy
   has_many :categories, through: :itemcategories
 
-  
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 
 end
