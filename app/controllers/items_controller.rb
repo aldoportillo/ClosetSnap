@@ -68,6 +68,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  #Remove Category
+
+  def remove_category
+    item = Item.find(params[:id])
+    category = Category.find(params[:category_id])
+    item_category = item.itemcategories.find_by(category_id: category.id)
+    item_category.destroy if item_category
+    redirect_to item_path(item), notice: "Category removed successfully."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item

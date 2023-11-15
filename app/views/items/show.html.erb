@@ -16,7 +16,7 @@
         <tr>
           <th scope="row"><%= category.name %></th>
 
-          <td><%= button_to "Remove Category", category, method: :delete %></td>
+          <td><%= button_to "Remove Category", remove_category_item_path(@item, category_id: category.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
       <tr>

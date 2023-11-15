@@ -44,8 +44,14 @@ Rails.application.routes.draw do
       delete :remove_item
     end
   end
+ 
+  resources :items do
+    member do
+      delete :remove_category
+    end
+  end
+
   resources :categories
-  resources :items
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
